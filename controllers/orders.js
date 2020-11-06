@@ -69,16 +69,28 @@ exports.saveOrders = async (req, res) => {
 };
 
 exports.getOrders = (req, res) => {
-Orders.find((error, orders) => {
-	if (error) {
-		return res.status(400).json({
-			error,
-		});
-	}
-	res.json({
-		orders: orders,
+	Orders.find((error, orders) => {
+		if (error) {
+			return res.status(400).json({
+				error,
+			});
+		}
+		const store = process.env.STORE;
+		const api = process.env.API;
+		const password = process.env.PASSWORD;
+		request(
+			{
+				url: `https://${api}:${password}@${store}?status=any&fields=created_at,id,email,name,currency,total-price,line_items,customer,financial_status`,
+			},
+			(error, response, body) => {
+				if (error || response.statusCode !== 200) {
+					return res
+						.status(500)
+						.json({ type: "error", message: error.message });
+				}
+
+				res.json(JSON.parse(body));
+			},
+		);
 	})
-}).select(
-	"orders",
-);
-}
+};
