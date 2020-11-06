@@ -1,0 +1,12 @@
+{
+  "/": "GET/ --- Get all posts",
+  "/unilevel": "GET/ --- Get Unilevel percentages",
+  "/unilevel-criteria": "GET/ --- Get Unilevel Criterias",
+  "/signup" : "POST/ --- New User Signup",
+  "/login" : "POST/ --- Existing User Login",
+  "/logout" : "GET/ --- Logout the logged in User",
+  "/users" : "GET/ -- Retrieve all Users (does not require login)",
+  "/user/:userId" : "GET/ --- Retrieve the user corresponding to the id (requires login)",
+  "/user/update/:userId" : "PUT/ --- Updates the user corresponding to the id (requires login)",
+  "/user/delete/:userId": "DELETE/ --- Deletes the user corresponding to the id (requires login)"
+}
