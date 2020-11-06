@@ -1,6 +1,6 @@
 const Orders = require("../models/orders");
 const _ = require("lodash");
-const { forEach } = require("lodash");
+const request = require("request");
 
 exports.saveOrders = async (req, res) => {
 	let oldOrders = await Orders.findOne({});
